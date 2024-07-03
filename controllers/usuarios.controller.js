@@ -12,7 +12,7 @@ const validar = (req, res) => {
 
     let buscar = "SELECT * FROM tabla_usuarios WHERE dni_ID = ?";
 
-    conexion.query(buscar, [dniID], function (error, row) {
+    db.query(buscar, [dniID], function (error, row) {
         if (error) {
             return res.status(500).json({error: "Hubo un error, intente nuevamente"})
         } else {
@@ -21,7 +21,7 @@ const validar = (req, res) => {
             } else {
                 let registrar = "INSERT INTO tabla_usuarios (dni_ID, Nombre, Apellido, Correo, Contrasena) VALUES (?, ?, ?, ?, ?)";
 
-                conexion.query(registrar, [dniID, nombre, apellido, correo, contrasena], function (error) {
+                db.query(registrar, [dniID, nombre, apellido, correo, contrasena], function (error) {
                     if (error) {
                         return res.status(500).json({error: "Hubo un error, intente nuevamente"})
                     } else {

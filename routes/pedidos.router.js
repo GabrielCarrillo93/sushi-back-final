@@ -5,3 +5,4 @@ const controller = require("../controllers/pedidos.controller");
 
 router.post("/", controller.storePedidos);
 
+module.exports = router
