@@ -23,4 +23,7 @@ router.delete('/:id', controlador.borrarCarrito)
 //Borrar un producto del carrito
 router.delete('/:id/producto/:id_producto', controlador.borrarProducto)
 
+//Vaciar carrito
+router.delete('/:id', controlador.vaciarCarrito)
+
 module.exports = router

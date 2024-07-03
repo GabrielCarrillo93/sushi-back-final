@@ -109,16 +109,32 @@ const borrarProducto = (req, res) => {
 
     db.query(sql, [id, id_producto], (err, result) => {
         if (err){
-            return mostrarError(500, {error: "Ha ocurrido un error. Intente nuevamente en unos minutos"})
+            return mostrarError(res, 500, {error: "Ha ocurrido un error. Intente nuevamente en unos minutos"})
         }
 
         if (result.affectedRows == 0) {
-            return mostrarError(404, {message: "No existe el registro"})
+            return mostrarError(res, 404, {message: "No existe el registro"})
         }
 
         res.status(201).json(result)
     })
 
+}
+
+const vaciarCarrito = (req, res) => {
+    const sql = "DELETE FROM lista_de_productos WHERE id_carrito = ?"
+    const {id} = req.params
+    db.query(sql, [id], (err, result) => {
+        if (err) {
+            return mostrarError(res, 500, {error: "Ha ocurrido un error. Intente nuevamente en unos minutos"})
+        }
+
+        if (result.affectedRows == 0){
+            return mostrarError(res, 404, {error: "Error. El carrito ya está vacío"})
+        }
+
+        res.status(201).json(result)
+    })
 }
 
 module.exports = {
@@ -128,5 +144,6 @@ module.exports = {
     agregarProducto,
     editarProducto,
     borrarCarrito,
-    borrarProducto
+    borrarProducto,
+    vaciarCarrito
 }
