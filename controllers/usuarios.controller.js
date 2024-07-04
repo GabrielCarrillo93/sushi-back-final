@@ -1,6 +1,16 @@
 const db = require('../db/db')
 
-const validar = (req, res) => {
+const usuarios = (req, res) =>{
+    const sql = "SELECT * from usuarios"
+    db.query(sql, (err, rows) => {
+        if (err) {
+            return res.status(500).json(err)
+        }
+        res.status(201).json(rows)
+    })
+}
+
+const registrar = (req, res) => {
     const datos = req.body;
     console.log(datos);
 
@@ -10,7 +20,7 @@ const validar = (req, res) => {
     let correo = datos.Correo;
     let contrasena = datos.Contrasena;
 
-    let buscar = "SELECT * FROM tabla_usuarios WHERE dni_ID = ?";
+    let buscar = "SELECT * FROM usuarios WHERE dni_ID = ?";
 
     db.query(buscar, [dniID], function (error, row) {
         if (error) {
@@ -19,7 +29,7 @@ const validar = (req, res) => {
             if (row.length > 0) {
                 res.status(404).json({error: "No se puede registrar, usuario existente"})
             } else {
-                let registrar = "INSERT INTO tabla_usuarios (dni_ID, Nombre, Apellido, Correo, Contrasena) VALUES (?, ?, ?, ?, ?)";
+                let registrar = "INSERT INTO usuarios (dni_ID, Nombre, Apellido, Correo, Contrasena) VALUES (?, ?, ?, ?, ?)";
 
                 db.query(registrar, [dniID, nombre, apellido, correo, contrasena], function (error) {
                     if (error) {
@@ -34,5 +44,6 @@ const validar = (req, res) => {
 }
 
 module.exports = {
-    validar
+    registrar,
+    usuarios
 }
