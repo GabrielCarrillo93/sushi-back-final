@@ -24,7 +24,7 @@ const carrito = (req, res) => {
     db.query(sql, [id], (err, rows) => {
         if (!err) {
             console.log(err)
-            return mostrarError(res, 500, {error: "Ha ocurrido un error. Intente nuevamente en unos minutos"})
+            //return mostrarError(res, 500, {error: "Ha ocurrido un error. Intente nuevamente en unos minutos"})
         }
 
         if (rows.length < 1){
