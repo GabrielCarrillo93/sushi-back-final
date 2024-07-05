@@ -21,7 +21,6 @@ const carritos = (req, res) => {
 const carrito = (req, res) => {
     const sql = "SELECT * FROM productosushi RIGHT JOIN lista_de_productos ON ID_Producto = id_catalogo WHERE id_carrito = ? order by ID_Producto"
     const {id} = req.params
-
     db.query(sql, [id], (err, rows) => {
         if (err) {
             return mostrarError(res, 500, {error: "Ha ocurrido un error. Intente nuevamente en unos minutos"})

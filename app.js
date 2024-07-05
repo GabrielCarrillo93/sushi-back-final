@@ -17,5 +17,5 @@ app.get('/', (req, res) => {
     res.send('¡Bienvenidos a Sushi Sensai!')
 })
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 3001
 app.listen(PORT, () => console.log(`http://localhost:${PORT}`))
