@@ -28,7 +28,7 @@ const carrito = (req, res) => {
         }
 
         if (rows.length < 1){
-            return mostrarError(res, 404, "El carrito está vacío")
+            return mostrarError(res, 404,{error: "El carrito está vacío"})
         }
         res.status(200).json(rows)
     })
