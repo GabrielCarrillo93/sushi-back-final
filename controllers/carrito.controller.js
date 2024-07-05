@@ -24,7 +24,7 @@ const carrito = (req, res) => {
 
     db.query(sql, [id], (err, rows) => {
         if (err) {
-            return mostrarError(res, 500, err)
+            return mostrarError(res, 200, err)
         }
 
         if (rows.length < 1){
