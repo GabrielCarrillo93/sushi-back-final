@@ -9,6 +9,7 @@ const carritos = (req, res) => {
 
     db.query(sql, (err, rows) => {
         if (err) {
+            console.log(err);
             return mostrarError(res, 500, {error: "Ha ocurrido un error. Intente nuevamente en unos minutos"})
         }
         if (rows.length < 1) {
