@@ -33,6 +33,7 @@
   "license": "MIT",
   "description": "API para la entrega final de codo a codo 2024",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "mysql2": "^3.10.2"
